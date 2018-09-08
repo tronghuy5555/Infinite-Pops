@@ -9,18 +9,21 @@ package com.example.sos.infinitepops.model;
 
 import com.example.sos.infinitepops.callback.ModelCallBack;
 import com.example.sos.infinitepops.dto.BaseResponse;
+import com.example.sos.infinitepops.dto.FeedResponse;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class BaseModel<T extends BaseResponse> {
+public class BaseModel<T extends ResponseBody> {
 
     protected static final Retrofit RETROFIT = new Retrofit.Builder()
             .baseUrl("https://api.popjam.com/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create())
             .build();
 
     protected Call<T> call;
@@ -35,7 +38,14 @@ public class BaseModel<T extends BaseResponse> {
                     callBack.onError(errorMessage, errorCode);
                     return;
                 }
-                callBack.onResponse(response.body());
+                FeedResponse feedResponse = null;
+                try {
+                    feedResponse = BaseResponse.gson.fromJson(response.body().string(), FeedResponse.class);
+                    callBack.onResponse(feedResponse);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    callBack.onError(errorMessage, errorCode);
+                }
             }
 
             @Override

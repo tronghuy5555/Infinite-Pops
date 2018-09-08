@@ -19,4 +19,5 @@ public class FeedResponse extends BaseResponse{
     public void setFeedItems(List<FeedItemResponse> feedItems) {
         this.feedItems = feedItems;
     }
+
 }

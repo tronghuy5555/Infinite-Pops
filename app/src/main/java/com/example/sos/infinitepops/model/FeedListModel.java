@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,10 +29,10 @@ public class FeedListModel extends BaseModel implements FeedListModelMrg{
     private interface Service {
 
         @GET("users/2e009fcf-d63c-4a3f-92f4-e847e2d5eee8/homeFeed")
-        Call<FeedResponse> getFeedList();
+        Call<ResponseBody> getFeedList();
 
         @GET("users/2e009fcf-d63c-4a3f-92f4-e847e2d5eee8/homeFeed")
-        Call<FeedResponse> getMoreFeed(@Query("lastId") String lastId);
+        Call<ResponseBody> getMoreFeed(@Query("lastId") String lastId);
     }
 
     @Override

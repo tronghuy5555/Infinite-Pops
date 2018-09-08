@@ -1,5 +1,7 @@
 package com.example.sos.infinitepops.dto;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,9 @@ import java.io.Serializable;
  * @since 07/09/2018.
  */
 public class BaseResponse implements Serializable {
+
+    public static final Gson gson = new Gson();
+
     private String errorMessage;
 
     private int errorCode;
@@ -28,4 +33,5 @@ public class BaseResponse implements Serializable {
     public void setErrorCode(int errorCode) {
         this.errorCode = errorCode;
     }
+
 }

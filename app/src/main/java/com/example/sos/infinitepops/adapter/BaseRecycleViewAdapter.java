@@ -9,9 +9,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 import com.example.sos.infinitepops.R;
 import com.example.sos.infinitepops.callback.OnEventListener;
-import com.example.sos.infinitepops.control.ImageLoading;
+import com.example.sos.infinitepops.control.VolleySingleton;
 import com.example.sos.infinitepops.dto.FeedItemResponse;
 
 import java.util.ArrayList;
@@ -121,7 +125,7 @@ public class BaseRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
         private FeedItemResponse data;
         private TextView tvText;
-        private ImageView ivImageResource;
+        private NetworkImageView ivImageResource;
 
         public FeedItemHolder(View itemView) {
             super(itemView);
@@ -132,7 +136,8 @@ public class BaseRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         void bindData(FeedItemResponse data) {
             this.data = data;
             tvText.setText(data.getText());
-            ImageLoading.load(data.getImageSrc(), ivImageResource);
+            ImageLoader imageLoader = VolleySingleton.getInstance().getImageLoader();
+            ivImageResource.setImageUrl(data.getImageSrc(), imageLoader);
         }
     }
 }
