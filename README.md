@@ -3,4 +3,4 @@ My approach: I use Retrofit library to get json data and parse it. I have wrote 
 
 My library: I choose Retrofit library because it is powerful library to help me get json data and parse it to object. I can handle exception easily.
 
-Issuse: The document wrote 'using at most 1 third-party library' so I have created my ImageLoading control. It does not perform well.
+Issuse: 
