@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".MyApplication">
-        <activity android:name="com.example.sos.infinitepops.vp.FeedListActivity">
+        <activity
+            android:name="com.example.sos.infinitepops.vp.FeedListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
